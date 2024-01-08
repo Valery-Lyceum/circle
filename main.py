@@ -1,17 +1,16 @@
 from PyQt5.QtWidgets import QMainWindow
 SCREEN_SIZE = [680, 480]
 import sys
-from PyQt5 import uic
-from random import randint
+from UI import Ui_MainWindow
+from random import randint, choice
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication
 
 
 
-class Suprematism(QMainWindow):
+class Suprematism(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
         self.setMouseTracking(True)
         self.coords_ = []
         self.qp = QPainter()
@@ -32,7 +31,7 @@ class Suprematism(QMainWindow):
     def draw(self, status):
         if status == 1:
             R = randint(20, 100)
-            self.qp.setBrush(QColor(255, 255, 0))
+            self.qp.setBrush(QColor(choice(range(0,255)), choice(range(0,255)), choice(range(0,255))))
             self.qp.drawEllipse(int(self.coords_[0] - R / 2),
                                 int(self.coords_[1] - R / 2), R, R)
 
